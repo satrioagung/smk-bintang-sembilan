@@ -1,0 +1,26 @@
+{
+  "name": "smk-bintang-sembilan",
+  "version": "1.0.0",
+  "description": "Website Landing Page SMK Bintang Sembilan",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satrioagung/smk-bintang-sembilan.git"
+  },
+  "author": "agung satrio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/satrioagung/smk-bintang-sembilan/issues"
+  },
+  "homepage": "https://github.com/satrioagung/smk-bintang-sembilan#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.16"
+  }
+}
