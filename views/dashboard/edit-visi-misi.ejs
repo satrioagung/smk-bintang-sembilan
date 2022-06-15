@@ -1,0 +1,21 @@
+<%- include('layouts/header-edit') %>
+
+    <h2>Edit Visi Misi</h2>
+    <div class="table-responsive">
+        <% for(row of rows) { %>
+            <form action="<%= row.id_visimisi %>" method="post">
+                <div class="mb-3">
+                    <label for="namaVisiMisi" class="form-label">Nama</label>
+                    <input type="text" class="form-control" name="nama" value="<%= row.nama_visimisi %>">
+                </div>
+                <div class="mb-3">
+                    <label for="detailVisiMisi" class="form-label">Detail Visi Misi</label>
+                    <textarea class="form-control" name="detail" rows="10"
+                        id="tiny"><%= row.detail_visimisi %></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+            <% } %>
+    </div>
+
+    <%- include('layouts/footer') %>

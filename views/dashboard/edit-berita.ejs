@@ -1,0 +1,20 @@
+<%- include('layouts/header-edit') %>
+
+    <h2>Edit Berita</h2>
+    <div class="table-responsive">
+        <% for(row of rows) { %>
+            <form action="<%= row.id_berita %>" method="post">
+                <div class="mb-3">
+                    <label for="namaberita" class="form-label">Nama</label>
+                    <input type="text" class="form-control" name="nama" value="<%= row.nama_berita %>">
+                </div>
+                <div class="mb-3">
+                    <label for="detailberita" class="form-label">Detail Visi Misi</label>
+                    <textarea class="form-control" name="detail" rows="10" id="tiny"><%= row.detail_berita %></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+            <% } %>
+    </div>
+
+    <%- include('layouts/footer') %>
