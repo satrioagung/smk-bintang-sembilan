@@ -88,18 +88,14 @@
                 </div>
             </div>
             <div class="row justify-content-around">
-                <div class="col-md-3">
-                    <h3 class="text-center">Visi</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis adipisci cumque, sint maxime
-                        minima
-                        voluptatem velit, rem, magni quam corrupti ullam eveniet doloribus nemo impedit?</p>
-                </div>
-                <div class="col-md-3">
-                    <h3 class="text-center">Misi</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis adipisci cumque, sint maxime
-                        minima
-                        voluptatem velit, rem, magni quam corrupti ullam eveniet doloribus nemo impedit?</p>
-                </div>
+                <% for(row of rows[0]){ %>
+                    <div class="col-md-3">
+                        <h3 class="text-center">
+                            <%= row.nama_visimisi %>
+                        </h3>
+                        <%- row.detail_visimisi %>
+                    </div>
+                    <% } %>
             </div>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -117,13 +113,17 @@
                 <div class="col-md text-center">
                     <img src="/assets/images/sambutan.jpg" alt="Logo SMK Bintang Sembilan" width="300">
                 </div>
-                <div class="col-md">
-                    <H2>Sambutan Kepala Sekolah</H2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, eos facilis.
-                        Tempora repellat,
-                        veniam ea culpa dolores consequuntur consectetur. Dolorem.</p>
-                    <p class="fs-5">- Agus Mustakim, S.Pd</p>
-                </div>
+                <% for( row of rows[1] ) { %>
+                    <div class="col-md">
+                        <H2>
+                            <%= row.nama_sambutan %>
+                        </H2>
+                        <p>
+                            <%= row.detail_sambutan %>
+                        </p>
+                        <p class="fs-5">- Agus Mustakim, S.Pd</p>
+                    </div>
+                    <% } %>
             </div>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -143,24 +143,16 @@
                 </div>
             </div>
             <div class="row justify-content-around">
-                <div class="col-md-3">
-                    <h3 class="text-center">Kejuruan</h3>
-                    <ul>
-                        <li>Teknik Komputer dan Jaringan</li>
-                        <li>Teknik Elektronika </li>
-                        <li>Administrasi Perkantoran</li>
-                        <li>Akuntansi</li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h3 class="text-center">Ekstrakurikuler</h3>
-                    <ul>
-                        <li>Pramuka</li>
-                        <li>Sepak Bola / Futsal</li>
-                        <li>Bola Voli</li>
-                        <li>Hadroh dan Sholawat</li>
-                    </ul>
-                </div>
+                <% for(row of rows[2]){ %>
+                    <div class="col-md-3">
+                        <h3 class="text-center">
+                            <%= row.nama_kejuruan %>
+                        </h3>
+                        <p>
+                            <%- row.detail_kejuruan %>
+                        </p>
+                    </div>
+                    <% } %>
             </div>
         </div>
     </section>
@@ -175,72 +167,22 @@
                 </div>
             </div>
             <div class="row justify-content-around mt-2">
-                <div class="col-md-4 mt-2">
-                    <div class="card">
-                        <img src="/assets/images/berita/1.jpg" class="card-img-top" alt="image-berita-1">
-                        <div class="card-body">
-                            <h5 class="card-title">Penerimaan Siswa Baru</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="/detail-berita" class="btn btn-primary">Terus Membaca...</a>
+                <% for(row of rows[3]) {%>
+                    <div class="col-md-4 mt-2">
+                        <div class="card">
+                            <img src="/assets/images/berita/1.jpg" class="card-img-top" alt="image-berita-1">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= row.nama_berita %>
+                                </h5>
+                                <p class="card-text">
+                                    <%- row.detail_berita %>
+                                </p>
+                                <a href="/detail-berita" class="btn btn-primary">Terus Membaca...</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <div class="card">
-                        <img src="/assets/images/berita/2.jpg" class="card-img-top" alt="image-berita-2">
-                        <div class="card-body">
-                            <h5 class="card-title">Penerimaan Siswa Baru</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="/detail-berita" class="btn btn-primary">Terus Membaca...</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <div class="card">
-                        <img src="/assets/images/berita/3.jpg" class="card-img-top" alt="image-berita-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Penerimaan Siswa Baru</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="/detail-berita" class="btn btn-primary">Terus Membaca...</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <div class="card">
-                        <img src="/assets/images/berita/4.jpg" class="card-img-top" alt="image-berita-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Penerimaan Siswa Baru</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="/detail-berita" class="btn btn-primary">Terus Membaca...</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <div class="card">
-                        <img src="/assets/images/berita/5.jpg" class="card-img-top" alt="image-berita-5">
-                        <div class="card-body">
-                            <h5 class="card-title">Penerimaan Siswa Baru</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="/detail-berita" class="btn btn-primary">Terus Membaca...</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <div class="card">
-                        <img src="/assets/images/berita/6.jpg" class="card-img-top" alt="image-berita-6">
-                        <div class="card-body">
-                            <h5 class="card-title">Penerimaan Siswa Baru</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="/detail-berita" class="btn btn-primary">Terus Membaca...</a>
-                        </div>
-                    </div>
-                </div>
+                    <% } %>
             </div>
         </div>
     </section>
@@ -255,46 +197,18 @@
                 </div>
             </div>
             <div class="row justify-content-start mt-2">
-                <div class="col-md-4 mt-2">
-                    <div class="card">
-                        <img src="/assets/images/galeri/1.jpg" class="card-img-top" alt="Image 1">
-                        <div class="card-body">
-                            <h5 class="card-text">Gedung Sekolah</h5>
+                <% for( row of rows[4] ) { %>
+                    <div class="col-md-4 mt-2">
+                        <div class="card">
+                            <img src="/assets/images/galeri/1.jpg" class="card-img-top" alt="Image 1">
+                            <div class="card-body">
+                                <h5 class="card-text">
+                                    <%=row.nama_galeri %>
+                                </h5>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <div class="card">
-                        <img src="/assets/images/galeri/2.jpg" class="card-img-top" alt="Image 2">
-                        <div class="card-body">
-                            <h5 class="card-text">Kegiatan Belajar</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <div class="card">
-                        <img src="/assets/images/galeri/3.jpg" class="card-img-top" alt="Image 3">
-                        <div class="card-body">
-                            <h5 class="card-text">Belajar Kelompok</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <div class="card">
-                        <img src="/assets/images/galeri/4.jpg" class="card-img-top" alt="Image 4">
-                        <div class="card-body">
-                            <h5 class="card-text">Kegiatan Belajar</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <div class="card">
-                        <img src="/assets/images/galeri/5.jpg" class="card-img-top" alt="Image 5">
-                        <div class="card-body">
-                            <h5 class="card-text">Gedung Sekolah</h5>
-                        </div>
-                    </div>
-                </div>
+                    <% } %>
             </div>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">

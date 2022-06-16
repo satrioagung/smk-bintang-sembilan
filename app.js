@@ -1,6 +1,5 @@
 const express = require("express");
 const methodOverride = require("method-override");
-const { path } = require("path");
 const homeRouter = require("./routers/homeRouter");
 const dashboardRouter = require("./routers/dashboardRouter");
 
@@ -10,7 +9,6 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 app.use("/assets", express.static("assets"));
-// app.use("/node_modules/tinymce", express.static("tinymce"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
