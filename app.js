@@ -45,7 +45,6 @@ app.use(flash());
 app.use("/login", loginRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/", homeRouter);
-app.use("/dashboard", dashboardRouter);
 
 app.listen("3000", () => {
   console.log("app runing at port 3000");

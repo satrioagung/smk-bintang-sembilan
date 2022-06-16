@@ -6,7 +6,32 @@ module.exports = {
   },
 
   admin: (req, res) => {
-    res.render("dashboard/admin");
+    dashboardModel.get("table_user", (err, result) => {
+      const rows = JSON.parse(JSON.stringify(result));
+      res.render("dashboard/admin", { rows });
+    });
+  },
+
+  saveRegister(req, res) {
+    let username = req.body.username;
+    let email = req.body.email;
+    let password = req.body.pass;
+    if (username && email && password) {
+      pool.getConnection(function (err, connection) {
+        if (err) throw err;
+        loginModel.createUser(connection, req.body, (err, results) => {
+          if (err) throw error;
+          req.flash("color", "success");
+          req.flash("status", "Yes..");
+          req.flash("message", "Registrasi berhasil");
+          res.redirect("/login");
+        });
+        connection.release();
+      });
+    } else {
+      res.redirect("/login");
+      res.end();
+    }
   },
 
   visiMisi: (req, res) => {

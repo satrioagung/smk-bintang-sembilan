@@ -1,9 +1,9 @@
 const con = require("../config/database");
 
 let mysql = require("mysql");
-let pool = mysql.createPool(con);
+let createPool = mysql.createPool(con);
 
-pool.on("error", (err) => {
+createPool.on("error", (err) => {
   console.error(err);
 });
 
