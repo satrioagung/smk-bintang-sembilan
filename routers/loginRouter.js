@@ -8,7 +8,4 @@ router.get("/logout", loginController.logout);
 
 router.post("/auth", loginController.loginAuth);
 
-router.get("/register", verify.isLogout, loginController.formRegister);
-router.post("/save", verify.isLogout, loginController.saveRegister);
-
 module.exports = router;

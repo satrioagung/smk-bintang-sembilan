@@ -5,6 +5,9 @@ const dashboardController = require("../controllers/dashboardController");
 
 router.get("/", verify.isLogin, dashboardController.index);
 router.get("/admin", verify.isLogin, dashboardController.admin);
+router.post("/createadmin", dashboardController.createAdmin);
+router.get("/deleteadmin/:id", verify.isLogin, dashboardController.deleteAdmin);
+// router.get("/deletegaleri/:id", verify.isLogin, dashboardController.deleteGaleri);
 
 // visi misi
 router.get("/visimisi", verify.isLogin, dashboardController.visiMisi);

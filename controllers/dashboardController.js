@@ -12,26 +12,16 @@ module.exports = {
     });
   },
 
-  saveRegister(req, res) {
-    let username = req.body.username;
-    let email = req.body.email;
-    let password = req.body.pass;
-    if (username && email && password) {
-      pool.getConnection(function (err, connection) {
-        if (err) throw err;
-        loginModel.createUser(connection, req.body, (err, results) => {
-          if (err) throw error;
-          req.flash("color", "success");
-          req.flash("status", "Yes..");
-          req.flash("message", "Registrasi berhasil");
-          res.redirect("/login");
-        });
-        connection.release();
-      });
-    } else {
-      res.redirect("/login");
-      res.end();
-    }
+  createAdmin: (req, res) => {
+    dashboardModel.createAdmin(req.body, (err, result) => {
+      res.redirect("/dashboard/admin");
+    });
+  },
+
+  deleteAdmin: (req, res) => {
+    dashboardModel.deleteAdmin( req.params.id, (err, result) => {
+      res.redirect("/dashboard/admin");
+    });
   },
 
   visiMisi: (req, res) => {

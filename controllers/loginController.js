@@ -54,30 +54,4 @@ module.exports = {
       res.redirect("/login");
     });
   },
-
-  formRegister(req, res) {
-    res.render("login/register");
-  },
-
-  saveRegister(req, res) {
-    let username = req.body.username;
-    let email = req.body.email;
-    let password = req.body.pass;
-    if (username && email && password) {
-      pool.getConnection(function (err, connection) {
-        if (err) throw err;
-        loginModel.createUser(connection, req.body, (err, results) => {
-          if (err) throw error;
-          req.flash("color", "success");
-          req.flash("status", "Yes..");
-          req.flash("message", "Registrasi berhasil");
-          res.redirect("/login");
-        });
-        connection.release();
-      });
-    } else {
-      res.redirect("/login");
-      res.end();
-    }
-  },
 };
