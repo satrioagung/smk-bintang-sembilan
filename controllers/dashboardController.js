@@ -141,14 +141,9 @@ module.exports = {
   },
 
   updateBerita: (req, res) => {
-    dashboardModel.update(
-      "berita",
-      req.body,
-      req.params.id,
-      (err, result) => {
-        res.redirect("/dashboard/berita");
-      }
-    );
+    dashboardModel.update("berita", req.body, req.params.id, (err, result) => {
+      res.redirect("/dashboard/berita");
+    });
   },
 
   deleteBerita: (req, res) => {
@@ -178,14 +173,9 @@ module.exports = {
   },
 
   updateGaleri: (req, res) => {
-    dashboardModel.update(
-      "galeri",
-      req.body,
-      req.params.id,
-      (err, result) => {
-        res.redirect("/dashboard/galeri");
-      }
-    );
+    dashboardModel.update("galeri", req.body, req.params.id, (err, result) => {
+      res.redirect("/dashboard/galeri");
+    });
   },
 
   deleteGaleri: (req, res) => {
