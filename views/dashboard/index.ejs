@@ -1,9 +1,113 @@
 <%- include('layouts/header') %>
 
-    <h2 class="mt-3">Section title</h2>
+    <h2 class="mt-3">Overview</h2>
     <div class="table-responsive">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis veniam voluptatibus mollitia
-            harum soluta, ex rerum odio quidem dolor quo adipisci repudiandae et est! Id!</p>
-    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <% const user=rows[0] %>
+                                <h5 class="card-title">
+                                    Admin
+                                </h5>
+                                <h1>
+                                    <%= user.length %>
+                                </h1>
+                                <a href="/dashboard/admin" class="nav-link"><span data-feather="info"
+                                        class="align-text-top">
+                                    </span> Detail
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <% const visimisi=rows[1] %>
+                                <h5 class="card-title">
+                                    Visi Misi
+                                </h5>
+                                <h1>
+                                    <%= visimisi.length %>
+                                </h1>
+                                <a href="/dashboard/visimisi" class="nav-link"><span data-feather="info"
+                                        class="align-text-top">
+                                    </span> Detail
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <% const sambutan=rows[2] %>
+                                <h5 class="card-title">
+                                    Sambutan
+                                </h5>
+                                <h1>
+                                    <%= sambutan.length %>
+                                </h1>
+                                <a href="/dashboard/sambutan" class="nav-link"><span data-feather="info"
+                                        class="align-text-top">
+                                    </span> Detail
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <% const kejuruan=rows[3] %>
+                                <h5 class="card-title">
+                                    Kejuruan
+                                </h5>
+                                <h1>
+                                    <%= kejuruan.length %>
+                                </h1>
+                                <a href="/dashboard/kejuruan" class="nav-link"><span data-feather="info"
+                                        class="align-text-top">
+                                    </span> Detail
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <% const berita=rows[4] %>
+                                <h5 class="card-title">
+                                    Berita
+                                </h5>
+                                <h1>
+                                    <%= berita.length %>
+                                </h1>
+                                <a href="/dashboard/berita" class="nav-link"><span data-feather="info"
+                                        class="align-text-top">
+                                    </span> Detail
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <% const galeri=rows[5] %>
+                                <h5 class="card-title">
+                                    Galeri
+                                </h5>
+                                <h1>
+                                    <%= galeri.length %>
+                                </h1>
+                                <a href="/dashboard/galeri" class="nav-link"><span data-feather="info"
+                                        class="align-text-top">
+                                    </span> Detail
+                                </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<%- include('layouts/footer') %>
+
+        <%- include('layouts/footer') %>

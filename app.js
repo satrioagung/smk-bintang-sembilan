@@ -2,9 +2,6 @@ const express = require("express");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const flash = require("req-flash");
-const { path } = require("path");
-
-const con = require("./config/database");
 
 const homeRouter = require("./routers/homeRouter");
 const dashboardRouter = require("./routers/dashboardRouter");
@@ -16,14 +13,9 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 app.use("/assets", express.static("assets"));
+app.use("/public", express.static("node_modules/tinymce"));
 
-// connect to database
-app.use((req, res, next) => {
-  req.con = con;
-  next();
-});
-
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 

@@ -2,7 +2,10 @@ const dashboardModel = require("../models/dashboardModel");
 
 module.exports = {
   index: (req, res) => {
-    res.render("dashboard/index");
+    dashboardModel.getAll((err, result) => {
+      const rows = JSON.parse(JSON.stringify(result));
+      res.render("dashboard/index", { rows });
+    });
   },
 
   admin: (req, res) => {
@@ -19,7 +22,7 @@ module.exports = {
   },
 
   deleteAdmin: (req, res) => {
-    dashboardModel.deleteAdmin( req.params.id, (err, result) => {
+    dashboardModel.deleteAdmin(req.params.id, (err, result) => {
       res.redirect("/dashboard/admin");
     });
   },

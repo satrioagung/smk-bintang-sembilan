@@ -4,11 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home | SMK Bintang Sembilan</title>
+    <title>Detail Berita | SMK Bintang Sembilan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="/assets/images/logo-sm.png">
     <style>
         section {
@@ -60,34 +59,23 @@
     <!-- Detail Berita -->
     <section>
         <div class="container">
-            <div class="card">
-                <div class="card-header">
-                    Detail Berita
+            <% for(row of rows){ %>
+                <div class="card">
+                    <div class="card-header">
+                        Detail Berita
+                    </div>
+                    <div class="card-body">
+                        <img src="/assets/images/berita/1.jpg" class="img-fluid" alt="image-berita-1" width="100%">
+                        <h5 class="card-title mt-3">
+                            <%= row.nama_berita %>
+                        </h5>
+                        <div>
+                            <%- row.detail_berita %>
+                        </div>
+                        <a href="/" class="btn btn-primary">Kembali ke Homepage</a>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <img src="/assets/images/berita/1.jpg" class="img-fluid" alt="image-berita-1" width="100%">
-                    <h5 class="card-title mt-3">Penerimaan Siswa Baru</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus culpa fugiat quod. Est harum
-                        repudiandae beatae deleniti? Nisi provident magnam ad commodi soluta quo aliquid, ipsa voluptate
-                        numquam, adipisci dolore non, nemo iste! Asperiores enim pariatur totam hic consectetur sunt.
-                        Beatae atque dolores nulla exercitationem quasi, explicabo architecto excepturi. Sed aliquid
-                        totam minus debitis nemo tempora molestias. Pariatur tempora nesciunt sequi et rem quaerat? Odio
-                        fugiat iste vero natus laudantium inventore et doloremque optio eius.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus culpa fugiat quod. Est harum
-                        repudiandae beatae deleniti? Nisi provident magnam ad commodi soluta quo aliquid, ipsa voluptate
-                        numquam, adipisci dolore non, nemo iste! Asperiores enim pariatur totam hic consectetur sunt.
-                        Beatae atque dolores nulla exercitationem quasi, explicabo architecto excepturi. Sed aliquid
-                        totam minus debitis nemo tempora molestias. Pariatur tempora nesciunt sequi et rem quaerat? Odio
-                        fugiat iste vero natus laudantium inventore et doloremque optio eius.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus culpa fugiat quod. Est harum
-                        repudiandae beatae deleniti? Nisi provident magnam ad commodi soluta quo aliquid, ipsa voluptate
-                        numquam, adipisci dolore non, nemo iste! Asperiores enim pariatur totam hic consectetur sunt.
-                        Beatae atque dolores nulla exercitationem quasi, explicabo architecto excepturi. Sed aliquid
-                        totam minus debitis nemo tempora molestias. Pariatur tempora nesciunt sequi et rem quaerat? Odio
-                        fugiat iste vero natus laudantium inventore et doloremque optio eius.</p>
-                    <a href="#" class="btn btn-primary">Kembali ke Homepage</a>
-                </div>
-            </div>
+                <% } %>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#0d6efd" fill-opacity="1"

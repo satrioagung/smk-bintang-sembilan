@@ -11,6 +11,18 @@ module.exports = {
     connect.query(`SELECT * FROM ${tabel} WHERE id_${tabel}=${id}`, cb);
   },
 
+  getAll: (cb) => {
+    connect.query(
+      `SELECT * FROM table_user;
+      SELECT * FROM  visimisi; 
+      SELECT * FROM  sambutan; 
+      SELECT * FROM  kejuruan;
+      SELECT * FROM  berita;
+      SELECT * FROM  galeri`,
+      cb
+    );
+  },
+
   create: (tabel, data, cb) => {
     connect.query(
       `INSERT INTO ${tabel} SET 

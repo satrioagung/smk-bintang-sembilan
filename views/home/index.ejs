@@ -176,9 +176,10 @@
                                     <%= row.nama_berita %>
                                 </h5>
                                 <p class="card-text">
-                                    <%- row.detail_berita %>
+                                    <%- row.detail_berita.substring(0, 150) %>...
                                 </p>
-                                <a href="/detail-berita" class="btn btn-primary">Terus Membaca...</a>
+                                <a class="btn btn-primary" href="/berita/<%= row.id_berita%>">Terus
+                                    Membaca...</a>
                             </div>
                         </div>
                     </div>

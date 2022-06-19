@@ -9,6 +9,9 @@ module.exports = {
   },
 
   detailBerita: (req, res) => {
-    res.render("home/detail-berita");
+    homeModel.getBerita(req.params.id, (err, result) => {
+      const rows = JSON.parse(JSON.stringify(result));
+      res.render("home/detail-berita", { rows });
+    });
   },
 };
