@@ -110,10 +110,10 @@
     <section id="sambutan" class="bg-primary text-light">
         <div class="container mt-3">
             <div class="row align-items-center">
-                <div class="col-md text-center">
-                    <img src="/assets/images/sambutan.jpg" alt="Logo SMK Bintang Sembilan" width="300">
-                </div>
                 <% for( row of rows[1] ) { %>
+                <div class="col-md text-center">
+                    <img src="/assets/images/sambutan/<%= row.foto_sambutan %>" alt="Logo SMK Bintang Sembilan" width="300">
+                </div>
                     <div class="col-md">
                         <H2>
                             <%= row.nama_sambutan %>
@@ -170,7 +170,7 @@
                 <% for(row of rows[3]) {%>
                     <div class="col-md-4 mt-2">
                         <div class="card">
-                            <img src="/assets/images/berita/1.jpg" class="card-img-top" alt="image-berita-1">
+                            <img src="/assets/images/berita/<%= row.foto_berita %>" class="card-img-top" alt="image-berita-1">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     <%= row.nama_berita %>
@@ -201,7 +201,7 @@
                 <% for( row of rows[4] ) { %>
                     <div class="col-md-4 mt-2">
                         <div class="card">
-                            <img src="/assets/images/galeri/1.jpg" class="card-img-top" alt="Image 1">
+                            <img src="/assets/images/galeri/<%= row.foto_galeri %>" class="card-img-top" alt="Image 1">
                             <div class="card-body">
                                 <h5 class="card-text">
                                     <%=row.nama_galeri %>

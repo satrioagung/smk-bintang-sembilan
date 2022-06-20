@@ -32,11 +32,34 @@ module.exports = {
     );
   },
 
+  // Create data with uploading foto by Multer
+  createUpload: (tabel, data, file, cb) => {
+    connect.query(
+      `INSERT INTO ${tabel} SET 
+      nama_${tabel}='${data.nama}', 
+      detail_${tabel}='${data.detail}',
+      foto_${tabel}='${file}'`,
+      cb
+    );
+  },
+
   update: (tabel, data, id, cb) => {
     connect.query(
       `UPDATE ${tabel} SET 
       nama_${tabel}='${data.nama}', 
       detail_${tabel}='${data.detail}' 
+      WHERE id_${tabel}=${id}`,
+      cb
+    );
+  },
+
+  // Update data with uploading foto by Multer
+  updateUpload: (tabel, data, id, file, cb) => {
+    connect.query(
+      `UPDATE ${tabel} SET 
+      nama_${tabel}='${data.nama}', 
+      detail_${tabel}='${data.detail}', 
+      foto_${tabel}='${file}' 
       WHERE id_${tabel}=${id}`,
       cb
     );

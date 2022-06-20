@@ -3,7 +3,7 @@
     <h2>Edit Galeri</h2>
     <div class="table-responsive">
         <% for(row of rows) { %>
-            <form action="<%= row.id_galeri %>" method="post">
+            <form action="<%= row.id_galeri %>" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="namagaleri" class="form-label">Nama</label>
                     <input type="text" class="form-control" name="nama" value="<%= row.nama_galeri %>">
@@ -12,6 +12,10 @@
                     <label for="detailgaleri" class="form-label">Detail Visi Misi</label>
                     <textarea class="form-control" name="detail" rows="10" id="tiny"><%= row.detail_galeri %></textarea>
                 </div>
+                <div class="mb-3">
+                    <label for="fotoGaleri" class="form-label">Foto Galeri</label>
+                    <input class="form-control" type="file" name="foto">
+                </div>    
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
             <% } %>

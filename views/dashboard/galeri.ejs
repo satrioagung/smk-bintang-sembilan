@@ -8,6 +8,7 @@
                     <th scope="col">No</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Detail</th>
+                    <th scope="col">Foto</th>
                     <th scope="col">Ubah</th>
                     <th scope="col">Hapus</th>
                 </tr>
@@ -25,6 +26,9 @@
                             <%= row.detail_galeri %>
                         </td>
                         <td>
+                            <img src="/assets/images/galeri/<%= row.foto_galeri %>" alt="Foto Berita" width="300px">
+                        </td>
+                        <td>
                             <a class="nav-link" href="/dashboard/editgaleri/<%= row.id_galeri %>">
                                 <span data-feather="edit"></span>
                             </a>
@@ -40,7 +44,7 @@
             <% } %>
         </table>
         <h2 class="pt-5">Tambah Galeri</h2>
-        <form action="/dashboard/createGaleri" method="post">
+        <form action="/dashboard/createGaleri" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="namaGaleri" class="form-label">Nama</label>
                 <input type="text" class="form-control" name="nama">
@@ -48,6 +52,10 @@
             <div class="mb-3">
                 <label for="detailGaleri" class="form-label">Detail Galeri</label>
                 <textarea class="form-control" name="detail" rows="10" id="tiny"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="fotoGaleri" class="form-label">Foto Galeri</label>
+                <input class="form-control" type="file" name="foto">
             </div>
             <button type="submit" class="btn btn-primary">Tambah</button>
         </form>
