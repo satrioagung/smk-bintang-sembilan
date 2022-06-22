@@ -8,6 +8,7 @@ const dashboardRouter = require("./routers/dashboardRouter");
 const loginRouter = require("./routers/loginRouter");
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -38,6 +39,6 @@ app.use("/login", loginRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/", homeRouter);
 
-app.listen("3000", () => {
-  console.log("app runing at port 3000");
+app.listen(port, () => {
+  console.log(`app runing at port ${port}`);
 });
