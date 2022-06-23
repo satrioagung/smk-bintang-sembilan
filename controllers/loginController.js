@@ -51,7 +51,7 @@ module.exports = {
         return console.log(err);
       }
       res.clearCookie("secretname");
-      res.redirect("/login");
+      res.redirect("/");
     });
   },
 };

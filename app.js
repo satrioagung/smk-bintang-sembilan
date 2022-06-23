@@ -29,7 +29,7 @@ app.use(
     name: "secretName",
     cookie: {
       sameSite: true,
-      maxAge: 60000,
+      maxAge: null,
     },
   })
 );

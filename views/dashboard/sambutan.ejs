@@ -2,7 +2,7 @@
 
     <h2 class="mt-3">Daftar Sambutan</h2>
     <div class="table-responsive">
-        <table class="table table-bordered">
+        <table class="table table-bordered align-middle text-center">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">No</th>
@@ -17,13 +17,14 @@
                 <% for(row of rows){ %>
                     <tr>
                         <td>
-                            <%= row.id_sambutan %>
+                            <% let no = rows.indexOf(row) %>
+                            <%= no+1 %>
                         </td>
-                        <td>
+                        <td class="text-start">
                             <%= row.nama_sambutan %>
                         </td>
-                        <td>
-                            <%= row.detail_sambutan %>
+                        <td class="text-start">
+                            <%- row.detail_sambutan %>
                         </td>
                         <td>
                             <img src="/assets/images/sambutan/<%= row.foto_sambutan %>" alt="Foto Sambutan"

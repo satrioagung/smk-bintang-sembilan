@@ -1,5 +1,5 @@
 const dashboardModel = require("../models/dashboardModel");
-const fs = require('fs');
+const fs = require("fs");
 
 module.exports = {
   index: (req, res) => {
@@ -8,7 +8,6 @@ module.exports = {
       res.render("dashboard/index", { rows });
     });
   },
-
 
   // CRUD admin
   admin: (req, res) => {
@@ -29,7 +28,6 @@ module.exports = {
       res.redirect("/dashboard/admin");
     });
   },
-
 
   // CRUD Visi Misi
   visiMisi: (req, res) => {
@@ -53,7 +51,11 @@ module.exports = {
   },
 
   updateVisiMisi: (req, res) => {
-    dashboardModel.update("visimisi", req.body, req.params.id, (err, result) => {
+    dashboardModel.update(
+      "visimisi",
+      req.body,
+      req.params.id,
+      (err, result) => {
         res.redirect("/dashboard/visimisi");
       }
     );
@@ -65,7 +67,6 @@ module.exports = {
     });
   },
 
-
   // CRUD Sambtan
   sambutan: (req, res) => {
     dashboardModel.get("sambutan", (err, result) => {
@@ -75,7 +76,11 @@ module.exports = {
   },
 
   createSambutan: (req, res) => {
-    dashboardModel.createUpload("sambutan", req.body, req.file.filename, (err, result) => {
+    dashboardModel.createUpload(
+      "sambutan",
+      req.body,
+      req.file.filename,
+      (err, result) => {
         res.redirect("/dashboard/sambutan");
       }
     );
@@ -89,34 +94,45 @@ module.exports = {
   },
 
   updateSambutan: (req, res) => {
-    if (!req.file){
+    if (!req.file) {
       // Kondisi jika tidak update foto
-      dashboardModel.update('sambutan', req.body, req.params.id, (err, result)=>{
-        console.log("Foto tidak diperbarui!");
-        res.redirect('/dashboard/sambutan');
-      });
+      dashboardModel.update(
+        "sambutan",
+        req.body,
+        req.params.id,
+        (err, result) => {
+          console.log("Foto tidak diperbarui!");
+          res.redirect("/dashboard/sambutan");
+        }
+      );
     } else {
       // Kondisi jika foto diperbarui
       // Hapus dulu file foto lama
-      dashboardModel.getById('sambutan', req.params.id, (err, result)=>{
+      dashboardModel.getById("sambutan", req.params.id, (err, result) => {
         const row = JSON.parse(JSON.stringify(result));
-        const nameFoto = row.map(obj => obj.foto_sambutan);
+        const nameFoto = row.map((obj) => obj.foto_sambutan);
         const deleteFoto = `assets/images/sambutan/${nameFoto.toString()}`;
         fs.unlinkSync(deleteFoto);
       });
 
       // Update data baru ke database
-      dashboardModel.updateUpload("sambutan", req.body, req.params.id, req.file.filename, (err, result) => {
+      dashboardModel.updateUpload(
+        "sambutan",
+        req.body,
+        req.params.id,
+        req.file.filename,
+        (err, result) => {
           res.redirect("/dashboard/sambutan");
-        });
-    };
+        }
+      );
+    }
   },
 
   deleteSambutan: (req, res) => {
     // Hapus file foto
-    dashboardModel.getById('sambutan', req.params.id, (err, result)=>{
+    dashboardModel.getById("sambutan", req.params.id, (err, result) => {
       const row = JSON.parse(JSON.stringify(result));
-      const nameFoto = row.map(obj => obj.foto_sambutan);
+      const nameFoto = row.map((obj) => obj.foto_sambutan);
       const deleteFoto = `assets/images/sambutan/${nameFoto.toString()}`;
       fs.unlinkSync(deleteFoto);
     });
@@ -126,7 +142,6 @@ module.exports = {
       res.redirect("/dashboard/sambutan");
     });
   },
-
 
   // CRUD Kejuruan
   kejuruan: (req, res) => {
@@ -150,7 +165,11 @@ module.exports = {
   },
 
   updateKejuruan: (req, res) => {
-    dashboardModel.update( "kejuruan", req.body, req.params.id, (err, result) => {
+    dashboardModel.update(
+      "kejuruan",
+      req.body,
+      req.params.id,
+      (err, result) => {
         res.redirect("/dashboard/kejuruan");
       }
     );
@@ -162,7 +181,6 @@ module.exports = {
     });
   },
 
-
   // CRUD Berita
   berita: (req, res) => {
     dashboardModel.get("berita", (err, result) => {
@@ -172,9 +190,14 @@ module.exports = {
   },
 
   createBerita: (req, res) => {
-    dashboardModel.createUpload("berita", req.body, req.file.filename, (err, result) => {
-      res.redirect("/dashboard/berita");
-    });
+    dashboardModel.createUpload(
+      "berita",
+      req.body,
+      req.file.filename,
+      (err, result) => {
+        res.redirect("/dashboard/berita");
+      }
+    );
   },
 
   editBerita: (req, res) => {
@@ -185,34 +208,45 @@ module.exports = {
   },
 
   updateBerita: (req, res) => {
-    if (!req.file){
+    if (!req.file) {
       // Kondisi jika tidak update foto
-      dashboardModel.update('berita', req.body, req.params.id, (err, result)=>{
-        console.log("Foto tidak diperbarui!");
-        res.redirect('/dashboard/berita');
-      });
+      dashboardModel.update(
+        "berita",
+        req.body,
+        req.params.id,
+        (err, result) => {
+          console.log("Foto tidak diperbarui!");
+          res.redirect("/dashboard/berita");
+        }
+      );
     } else {
       // Kondisi jika foto diperbarui
       // Hapus dulu file foto lama
-      dashboardModel.getById('berita', req.params.id, (err, result)=>{
+      dashboardModel.getById("berita", req.params.id, (err, result) => {
         const row = JSON.parse(JSON.stringify(result));
-        const nameFoto = row.map(obj => obj.foto_berita);
+        const nameFoto = row.map((obj) => obj.foto_berita);
         const deleteFoto = `assets/images/berita/${nameFoto.toString()}`;
         fs.unlinkSync(deleteFoto);
       });
 
       // Update data baru ke database
-      dashboardModel.updateUpload("berita", req.body, req.params.id, req.file.filename, (err, result) => {
+      dashboardModel.updateUpload(
+        "berita",
+        req.body,
+        req.params.id,
+        req.file.filename,
+        (err, result) => {
           res.redirect("/dashboard/berita");
-        });
-    };
+        }
+      );
+    }
   },
 
   deleteBerita: (req, res) => {
     // Hapus file foto
-    dashboardModel.getById('berita', req.params.id, (err, result)=>{
+    dashboardModel.getById("berita", req.params.id, (err, result) => {
       const row = JSON.parse(JSON.stringify(result));
-      const nameFoto = row.map(obj => obj.foto_berita);
+      const nameFoto = row.map((obj) => obj.foto_berita);
       const deleteFoto = `assets/images/berita/${nameFoto.toString()}`;
       fs.unlinkSync(deleteFoto);
     });
@@ -223,7 +257,6 @@ module.exports = {
     });
   },
 
-
   //CRUD Galeri
   galeri: (req, res) => {
     dashboardModel.get("galeri", (err, result) => {
@@ -233,9 +266,14 @@ module.exports = {
   },
 
   createGaleri: (req, res) => {
-    dashboardModel.createUpload("galeri", req.body, req.file.filename, (err, result) => {
-      res.redirect("/dashboard/galeri");
-    });
+    dashboardModel.createUpload(
+      "galeri",
+      req.body,
+      req.file.filename,
+      (err, result) => {
+        res.redirect("/dashboard/galeri");
+      }
+    );
   },
 
   editGaleri: (req, res) => {
@@ -246,34 +284,45 @@ module.exports = {
   },
 
   updateGaleri: (req, res) => {
-    if (!req.file){
+    if (!req.file) {
       // Kondisi jika tidak update foto
-      dashboardModel.update('galeri', req.body, req.params.id, (err, result)=>{
-        console.log("Foto tidak diperbarui!");
-        res.redirect('/dashboard/galeri');
-      });
+      dashboardModel.update(
+        "galeri",
+        req.body,
+        req.params.id,
+        (err, result) => {
+          console.log("Foto tidak diperbarui!");
+          res.redirect("/dashboard/galeri");
+        }
+      );
     } else {
       // Kondisi jika foto diperbarui
       // Hapus dulu file foto lama
-      dashboardModel.getById('galeri', req.params.id, (err, result)=>{
+      dashboardModel.getById("galeri", req.params.id, (err, result) => {
         const row = JSON.parse(JSON.stringify(result));
-        const nameFoto = row.map(obj => obj.foto_galeri);
+        const nameFoto = row.map((obj) => obj.foto_galeri);
         const deleteFoto = `assets/images/galeri/${nameFoto.toString()}`;
         fs.unlinkSync(deleteFoto);
       });
 
       // Update data baru ke database
-      dashboardModel.updateUpload("galeri", req.body, req.params.id, req.file.filename, (err, result) => {
+      dashboardModel.updateUpload(
+        "galeri",
+        req.body,
+        req.params.id,
+        req.file.filename,
+        (err, result) => {
           res.redirect("/dashboard/galeri");
-        });
-    };
+        }
+      );
+    }
   },
 
   deleteGaleri: (req, res) => {
     // Hapus file foto
-    dashboardModel.getById('galeri', req.params.id, (err, result)=>{
+    dashboardModel.getById("galeri", req.params.id, (err, result) => {
       const row = JSON.parse(JSON.stringify(result));
-      const nameFoto = row.map(obj => obj.foto_galeri);
+      const nameFoto = row.map((obj) => obj.foto_galeri);
       const deleteFoto = `assets/images/galeri/${nameFoto.toString()}`;
       fs.unlinkSync(deleteFoto);
     });
