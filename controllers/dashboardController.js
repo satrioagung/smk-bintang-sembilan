@@ -112,7 +112,11 @@ module.exports = {
         const row = JSON.parse(JSON.stringify(result));
         const nameFoto = row.map((obj) => obj.foto_sambutan);
         const deleteFoto = `assets/images/sambutan/${nameFoto.toString()}`;
-        fs.unlinkSync(deleteFoto);
+        if( fs.existsSync(deleteFoto)){
+          fs.unlinkSync(deleteFoto);
+        } else {
+          return;
+        }
       });
 
       // Update data baru ke database
@@ -134,7 +138,11 @@ module.exports = {
       const row = JSON.parse(JSON.stringify(result));
       const nameFoto = row.map((obj) => obj.foto_sambutan);
       const deleteFoto = `assets/images/sambutan/${nameFoto.toString()}`;
-      fs.unlinkSync(deleteFoto);
+      if( fs.existsSync(deleteFoto)){
+        fs.unlinkSync(deleteFoto);
+      } else {
+        return;
+      }
     });
 
     // Hapus data di database
@@ -226,7 +234,11 @@ module.exports = {
         const row = JSON.parse(JSON.stringify(result));
         const nameFoto = row.map((obj) => obj.foto_berita);
         const deleteFoto = `assets/images/berita/${nameFoto.toString()}`;
-        fs.unlinkSync(deleteFoto);
+        if( fs.existsSync(deleteFoto)){
+          fs.unlinkSync(deleteFoto);
+        } else {
+          return;
+        }
       });
 
       // Update data baru ke database
@@ -248,7 +260,11 @@ module.exports = {
       const row = JSON.parse(JSON.stringify(result));
       const nameFoto = row.map((obj) => obj.foto_berita);
       const deleteFoto = `assets/images/berita/${nameFoto.toString()}`;
-      fs.unlinkSync(deleteFoto);
+      if( fs.existsSync(deleteFoto)){
+        fs.unlinkSync(deleteFoto);
+      } else {
+        return;
+      }
     });
 
     // Hapus data di database
@@ -302,7 +318,11 @@ module.exports = {
         const row = JSON.parse(JSON.stringify(result));
         const nameFoto = row.map((obj) => obj.foto_galeri);
         const deleteFoto = `assets/images/galeri/${nameFoto.toString()}`;
-        fs.unlinkSync(deleteFoto);
+        if( fs.existsSync(deleteFoto)){
+          fs.unlinkSync(deleteFoto);
+        } else {
+          return;
+        }
       });
 
       // Update data baru ke database
@@ -324,7 +344,11 @@ module.exports = {
       const row = JSON.parse(JSON.stringify(result));
       const nameFoto = row.map((obj) => obj.foto_galeri);
       const deleteFoto = `assets/images/galeri/${nameFoto.toString()}`;
-      fs.unlinkSync(deleteFoto);
+      if( fs.existsSync(deleteFoto)){
+        fs.unlinkSync(deleteFoto);
+      } else {
+        return;
+      }
     });
 
     // Hapus data di database
