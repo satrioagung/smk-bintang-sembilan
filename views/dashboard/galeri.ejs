@@ -9,6 +9,7 @@
                     <th scope="col">Nama</th>
                     <th scope="col">Detail</th>
                     <th scope="col">Foto</th>
+                    <th scope="col">Aktif</th>
                     <th scope="col">Ubah</th>
                     <th scope="col">Hapus</th>
                 </tr>
@@ -27,7 +28,10 @@
                             <%- row.detail_galeri %>
                         </td>
                         <td>
-                            <img src="/assets/images/galeri/<%= row.foto_galeri %>" alt="Foto Berita" width="300px">
+                            <img src="/assets/images/galeri/<%= row.foto_galeri %>" alt="Foto Berita" width="200px">
+                        </td>
+                        <td>
+                            <%- row.aktif_galeri %>
                         </td>
                         <td>
                             <a class="nav-link" href="/dashboard/editgaleri/<%= row.id_galeri %>">
@@ -35,7 +39,7 @@
                             </a>
                         </td>
                         <td>
-                            <a class="nav-link" href="/dashboard/deletegaleri/<%= row.id_galeri %>"
+                            <a class="nav-link text-danger" href="/dashboard/deletegaleri/<%= row.id_galeri %>"
                                 onclick="return confirm('Yakin?')">
                                 <span data-feather="trash"></span>
                             </a>
@@ -56,7 +60,7 @@
             </div>
             <div class="mb-3">
                 <label for="fotoGaleri" class="form-label">Foto Galeri</label>
-                <input class="form-control" type="file" name="foto">
+                <input class="form-control" type="file" name="foto" required>
             </div>
             <button type="submit" class="btn btn-primary">Tambah</button>
         </form>

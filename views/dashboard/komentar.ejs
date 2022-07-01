@@ -1,38 +1,46 @@
 <%- include('layouts/header-edit') %>
 
-    <h2 class="mt-3">Daftar Kejuruan</h2>
+    <h2 class="mt-3">Daftar Komentar</h2>
     <div class="table-responsive">
         <table class="table table-bordered align-middle text-center">
             <thead class="table-dark">
-                <tr>
+                <tr class="align-middle">
                     <th scope="col">No</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Detail</th>
+                    <th scope="col">Id Berita</th>
+                    <th scope="col">Aktif</th>
                     <th scope="col">Ubah</th>
                     <th scope="col">Hapus</th>
                 </tr>
             </thead>
             <tbody>
-                <% for(row of rows){ %>
+                <% for(let row of rows){ %>
                     <tr>
                         <td>
                             <% let no = rows.indexOf(row) %>
                             <%= no+1 %>
                         </td>
                         <td class="text-start">
-                            <%= row.nama_kejuruan %>
+                            <%= row.nama_komentar %>
                         </td>
                         <td class="text-start">
-                            <%- row.detail_kejuruan %>
+                            <%= row.detail_komentar %>
                         </td>
                         <td>
-                            <a class="nav-link" href="/dashboard/editkejuruan/<%= row.id_kejuruan %>">
+                            <%= row.id_berita %>
+                        </td>
+                        <td>
+                            <%= row.aktif_komentar %>
+                        </td>
+                        <td>
+                            <a class="nav-link" href="/dashboard/editkomentar/<%= row.id_komentar %>">
                                 <span data-feather="edit"></span>
                             </a>
                         </td>
                         <td>
-                            <a class="nav-link text-danger" href="/dashboard/deletekejuruan/<%= row.id_kejuruan %>"
-                                onclick="return confirm('Yakin?')">
+                            <a class="nav-link text-danger" href="/dashboard/deletekomentar/<%= row.id_komentar %>"
+                                onclick="return confirm('Yakin?');">
                                 <span data-feather="trash"></span>
                             </a>
                         </td>
@@ -40,18 +48,7 @@
             </tbody>
             <% } %>
         </table>
-        <h2 class="pt-5">Tambah Kejuruan</h2>
-        <form action="/dashboard/createKejuruan" method="post">
-            <div class="mb-3">
-                <label for="namaKejuruan" class="form-label">Nama</label>
-                <input type="text" class="form-control" name="nama">
-            </div>
-            <div class="mb-3">
-                <label for="detailKejuruan" class="form-label">Detail Kejuruan</label>
-                <textarea class="form-control" name="detail" rows="10" id="tiny"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Tambah</button>
-        </form>
     </div>
+
 
     <%- include('layouts/footer') %>

@@ -65,6 +65,38 @@ module.exports = {
     );
   },
 
+  // for update  menu with active status
+  updateKomentar: (data, id, cb) => {
+    connect.query(
+      `UPDATE komentar SET aktif_komentar = '${data.aktif}' WHERE id_komentar = '${id}'`,
+      cb
+    );
+  },
+
+  updateAktif: (tabel, data, id, cb) => {
+    connect.query(
+      `UPDATE ${tabel} SET 
+      nama_${tabel} = '${data.nama}', 
+      detail_${tabel} = '${data.detail}',
+      aktif_${tabel} = '${data.aktif}'
+      WHERE id_${tabel}=${id}`,
+      cb
+    );
+  },
+
+  // Update data with uploading foto by Multer
+  updateUploadAktif: (tabel, data, id, file, cb) => {
+    connect.query(
+      `UPDATE ${tabel} SET 
+      nama_${tabel} = '${data.nama}', 
+      detail_${tabel} = '${data.detail}', 
+      foto_${tabel} = '${file}',
+      aktif_${tabel} = '${data.aktif}' 
+      WHERE id_${tabel}=${id}`,
+      cb
+    );
+  },
+
   delete: (tabel, id, cb) => {
     connect.query(`DELETE FROM ${tabel} WHERE id_${tabel}=${id}`, cb);
   },

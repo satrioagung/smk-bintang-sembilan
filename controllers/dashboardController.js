@@ -218,7 +218,7 @@ module.exports = {
   updateBerita: (req, res) => {
     if (!req.file) {
       // Kondisi jika tidak update foto
-      dashboardModel.update(
+      dashboardModel.updateAktif(
         "berita",
         req.body,
         req.params.id,
@@ -242,7 +242,7 @@ module.exports = {
       });
 
       // Update data baru ke database
-      dashboardModel.updateUpload(
+      dashboardModel.updateUploadAktif(
         "berita",
         req.body,
         req.params.id,
@@ -273,6 +273,44 @@ module.exports = {
     });
   },
 
+   // CRUD Komentar
+   komentar: (req, res) => {
+    dashboardModel.get("komentar", (err, result) => {
+      const rows = JSON.parse(JSON.stringify(result));
+      res.render("dashboard/komentar", { rows });
+    });
+  },
+
+  createKomentar: (req, res) => {
+    dashboardModel.create("visimisi", req.body, (err, result) => {
+      res.redirect("/dashboard/visimisi");
+    });
+  },
+
+  editKomentar: (req, res) => {
+    dashboardModel.getById("komentar", req.params.id, (err, result) => {
+      const rows = JSON.parse(JSON.stringify(result));
+      res.render("dashboard/edit-komentar", { rows });
+    });
+  },
+
+  updateKomentar: (req, res) => {
+    dashboardModel.updateKomentar(
+      req.body,
+      req.params.id,
+      (err, result) => {
+        res.redirect("/dashboard/komentar");
+      }
+    );
+  },
+
+  deleteKomentar: (req, res) => {
+    dashboardModel.delete("komentar", req.params.id, (err, result) => {
+      res.redirect("/dashboard/komentar");
+    });
+  },
+
+
   //CRUD Galeri
   galeri: (req, res) => {
     dashboardModel.get("galeri", (err, result) => {
@@ -283,13 +321,12 @@ module.exports = {
 
   createGaleri: (req, res) => {
     dashboardModel.createUpload(
-      "galeri",
+      "galeri", 
       req.body,
       req.file.filename,
-      (err, result) => {
+      (err, result)  => {
         res.redirect("/dashboard/galeri");
-      }
-    );
+      });
   },
 
   editGaleri: (req, res) => {
@@ -302,7 +339,7 @@ module.exports = {
   updateGaleri: (req, res) => {
     if (!req.file) {
       // Kondisi jika tidak update foto
-      dashboardModel.update(
+      dashboardModel.updateAktif(
         "galeri",
         req.body,
         req.params.id,
@@ -326,7 +363,7 @@ module.exports = {
       });
 
       // Update data baru ke database
-      dashboardModel.updateUpload(
+      dashboardModel.updateUploadAktif(
         "galeri",
         req.body,
         req.params.id,

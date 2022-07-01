@@ -28,7 +28,7 @@
                         </td>
                         <td>
                             <img src="/assets/images/sambutan/<%= row.foto_sambutan %>" alt="Foto Sambutan"
-                                width="300px">
+                                width="200px">
                         </td>
                         <td>
                             <a class="nav-link" href="/dashboard/editsambutan/<%= row.id_sambutan %>">
@@ -36,7 +36,7 @@
                             </a>
                         </td>
                         <td>
-                            <a class="nav-link" href="/dashboard/deletesambutan/<%= row.id_sambutan %>"
+                            <a class="nav-link text-danger" href="/dashboard/deletesambutan/<%= row.id_sambutan %>"
                                 onclick="return confirm('Yakin?')">
                                 <span data-feather="trash"></span>
                             </a>
@@ -57,7 +57,7 @@
             </div>
             <div class="mb-3">
                 <label for="fotoSambutan" class="form-label">Foto Sambutan</label>
-                <input class="form-control" type="file" name="foto">
+                <input class="form-control" type="file" name="foto" required>
             </div>
             <button type="submit" class="btn btn-primary">Tambah</button>
         </form>
