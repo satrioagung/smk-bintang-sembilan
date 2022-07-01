@@ -4,12 +4,8 @@ const connect = mysql.createConnection(config);
 
 module.exports = {
   getBerita: (id, cb) => {
-    connect.query(`SELECT * FROM berita WHERE id_berita = ${id}; 
+    connect.query(`SELECT * FROM berita WHERE id_berita = ${id} AND aktif_berita= 'yes'; 
                   SELECT * FROM komentar WHERE id_berita = ${id} AND aktif_komentar  = 'yes'`, cb);
-  },
-
-  findBerita: (id, cb) => {
-    connect.query(`SELECT  COUNT(nama_berita) FROM berita WHERE id_berita  = ${id}`, cb)
   },
 
   getAll: (cb) => {
