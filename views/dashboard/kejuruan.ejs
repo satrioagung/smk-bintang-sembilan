@@ -1,4 +1,4 @@
-<%- include('layouts/header-edit') %>
+<%- include('layouts/header') %>
 
     <h2 class="mt-3">Daftar Kejuruan</h2>
     <div class="table-responsive">
@@ -9,7 +9,6 @@
                     <th scope="col">Nama</th>
                     <th scope="col">Detail</th>
                     <th scope="col">Ubah</th>
-                    <th scope="col">Hapus</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,28 +29,10 @@
                                 <span data-feather="edit"></span>
                             </a>
                         </td>
-                        <td>
-                            <a class="nav-link text-danger" href="/dashboard/deletekejuruan/<%= row.id_kejuruan %>"
-                                onclick="return confirm('Yakin?')">
-                                <span data-feather="trash"></span>
-                            </a>
-                        </td>
                     </tr>
             </tbody>
             <% } %>
         </table>
-        <h2 class="pt-5">Tambah Kejuruan</h2>
-        <form action="/dashboard/createKejuruan" method="post">
-            <div class="mb-3">
-                <label for="namaKejuruan" class="form-label">Nama</label>
-                <input type="text" class="form-control" name="nama">
-            </div>
-            <div class="mb-3">
-                <label for="detailKejuruan" class="form-label">Detail Kejuruan</label>
-                <textarea class="form-control" name="detail" rows="10" id="tiny"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Tambah</button>
-        </form>
     </div>
 
     <%- include('layouts/footer') %>

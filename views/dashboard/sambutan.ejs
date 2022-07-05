@@ -1,4 +1,4 @@
-<%- include('layouts/header-edit') %>
+<%- include('layouts/header') %>
 
     <h2 class="mt-3">Daftar Sambutan</h2>
     <div class="table-responsive">
@@ -10,7 +10,6 @@
                     <th scope="col">Detail</th>
                     <th scope="col">Foto</th>
                     <th scope="col">Ubah</th>
-                    <th scope="col">Hapus</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,32 +34,10 @@
                                 <span data-feather="edit"></span>
                             </a>
                         </td>
-                        <td>
-                            <a class="nav-link text-danger" href="/dashboard/deletesambutan/<%= row.id_sambutan %>"
-                                onclick="return confirm('Yakin?')">
-                                <span data-feather="trash"></span>
-                            </a>
-                        </td>
                     </tr>
             </tbody>
             <% } %>
         </table>
-        <h2 class="pt-5">Tambah Sambutan</h2>
-        <form action="/dashboard/createsambutan" method="post" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="namaSambutan" class="form-label">Nama</label>
-                <input type="text" class="form-control" name="nama">
-            </div>
-            <div class="mb-3">
-                <label for="detailSambutan" class="form-label">Detail Sambutan</label>
-                <textarea class="form-control" name="detail" rows="10" id="tiny"></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="fotoSambutan" class="form-label">Foto Sambutan</label>
-                <input class="form-control" type="file" name="foto" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Tambah</button>
-        </form>
     </div>
 
     <%- include('layouts/footer') %>
