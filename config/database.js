@@ -1,9 +1,7 @@
-require("dotenv").config();
-
 module.exports = {
   multipleStatements: true,
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+  host: "db4free.net",
+  user: "bintang9",
+  password: "6bc99547",
+  database: "smkbintang9",
 };

@@ -58,67 +58,14 @@
 
     <!-- Detail Berita -->
     <section>
-        <div class="container">
-            <!-- Detaul  Berita -->
-            <% for(row of rows[0]){ %>
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Detail Berita</h3>
-                    </div>
-                    <div class="card-body">
-                        <img src="/assets/images/berita/<%= row.foto_berita %>" class="img-fluid" alt="image-berita-1"
-                            width="100%">
-                        <h3 class="card-title mt-3">
-                            <%= row.nama_berita %>
-                        </h3>
-                        <div>
-                            <%- row.detail_berita %>
-                        </div>
-                        <a href="/" class="btn btn-primary">Kembali ke Homepage</a>
-                    </div>
-
-                    <!-- Daftar Komentar -->
-                    <h4  class="ps-3 mt-3">Komentar</h4>
-                    <ul class="list-group list-group-flush mx-5">
-                        <% for(row1 of rows[1]){%> 
-                        <li class="list-group-item">
-                            <h6>
-                                <%= row1.nama_komentar %>
-                                <span class="fw-normal">
-                                    [<%= moment(row1.date_komentar).format('D/MMMM/YYYY') %>]
-                                </span>
-                            </h6>
-                            <p><%= row1.detail_komentar %></p>
-                        </li>
-                        <% } %> 
-                    </ul>
-
-                    <!-- Tambah Komentar -->
-                    <h4 class="ps-3 mt-5">Tambahkan Komentar</h4>
-                    <form action="/komen" method="post">
-                        <input type="text" name="id_berita" value="<%= row.id_berita %>" hidden>
-                        <% } %>
-                            <div class="px-5">
-                                <label class="form-label">Nama</label>
-                                <input type="text" class="form-control" name="nama">
-                            </div>
-                            <div class="px-5 mt-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" placeholder="name@example.com">
-                            </div>
-                            <div class="px-5 mt-3">
-                                <label class="form-label">Komentar</label>
-                                <textarea class="form-control" name="detail" rows="3"></textarea>
-                            </div>
-                            <button class="btn btn-success m-5 mt-3">Kirim Komentar</button>
-                    </form>
+        <div class="container mt-5" style="min-height: 500px;">
+            <h1 class="text-center">404 Page Not Found</h1>
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-4 text-center">
+                    <a href="/" class="btn btn-primary">Kembali ke Homepage</a>
                 </div>
+            </div>
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#0d6efd" fill-opacity="1"
-                d="M0,256L120,261.3C240,267,480,277,720,261.3C960,245,1200,203,1320,181.3L1440,160L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z">
-            </path>
-        </svg>
     </section>
     <!-- Akhir Detail Berita -->
 

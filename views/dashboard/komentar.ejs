@@ -1,14 +1,17 @@
-<%- include('layouts/header') %>
+<%- include('layouts/header-edit') %>
 
-    <h2 class="mt-3">Daftar Visi Misi</h2>
+    <h2 class="mt-3">Daftar Komentar</h2>
     <div class="table-responsive">
         <table class="table table-bordered align-middle text-center">
             <thead class="table-dark">
-                <tr>
+                <tr class="align-middle">
                     <th scope="col">No</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Detail</th>
+                    <th scope="col">Id Berita</th>
+                    <th scope="col">Aktif</th>
                     <th scope="col">Ubah</th>
+                    <th scope="col">Hapus</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,14 +22,26 @@
                             <%= no+1 %>
                         </td>
                         <td class="text-start">
-                            <%= row.nama_visimisi %>
+                            <%= row.nama_komentar %>
                         </td>
                         <td class="text-start">
-                            <%- row.detail_visimisi %>
+                            <%= row.detail_komentar %>
                         </td>
                         <td>
-                            <a class="nav-link" href="/dashboard/editvisimisi/<%= row.id_visimisi %>">
+                            <%= row.id_berita %>
+                        </td>
+                        <td>
+                            <%= row.aktif_komentar %>
+                        </td>
+                        <td>
+                            <a class="nav-link" href="/dashboard/editkomentar/<%= row.id_komentar %>">
                                 <span data-feather="edit"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="nav-link text-danger" href="/dashboard/deletekomentar/<%= row.id_komentar %>"
+                                onclick="return confirm('Yakin?');">
+                                <span data-feather="trash"></span>
                             </a>
                         </td>
                     </tr>

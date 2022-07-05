@@ -1,5 +1,5 @@
 const dashboardModel = require("../models/dashboardModel");
-const fs = require('fs');
+const fs = require("fs");
 
 module.exports = {
   index: (req, res) => {
@@ -8,7 +8,6 @@ module.exports = {
       res.render("dashboard/index", { rows });
     });
   },
-
 
   // CRUD admin
   admin: (req, res) => {
@@ -30,7 +29,6 @@ module.exports = {
     });
   },
 
-
   // CRUD Visi Misi
   visiMisi: (req, res) => {
     dashboardModel.get("visimisi", (err, result) => {
@@ -39,32 +37,32 @@ module.exports = {
     });
   },
 
-  createVisiMisi: (req, res) => {
-    dashboardModel.create("visimisi", req.body, (err, result) => {
-      res.redirect("/dashboard/visimisi");
-    });
-  },
-
   editVisiMisi: (req, res) => {
+    // menangkap params  yang tidak sesuai
+    if (req.params.id >= 0 == false) {
+      return res.render("dashboard/page-not-found");
+    }
+
+    // menangkap params yang sesuai
     dashboardModel.getById("visimisi", req.params.id, (err, result) => {
       const rows = JSON.parse(JSON.stringify(result));
+      if (result.length < 1) {
+        return res.render("dashboard/page-not-found");
+      }
       res.render("dashboard/edit-visi-misi", { rows });
     });
   },
 
   updateVisiMisi: (req, res) => {
-    dashboardModel.update("visimisi", req.body, req.params.id, (err, result) => {
+    dashboardModel.update(
+      "visimisi",
+      req.body,
+      req.params.id,
+      (err, result) => {
         res.redirect("/dashboard/visimisi");
       }
     );
   },
-
-  deleteVisiMisi: (req, res) => {
-    dashboardModel.delete("visimisi", req.params.id, (err, result) => {
-      res.redirect("/dashboard/visimisi");
-    });
-  },
-
 
   // CRUD Sambtan
   sambutan: (req, res) => {
@@ -74,59 +72,60 @@ module.exports = {
     });
   },
 
-  createSambutan: (req, res) => {
-    dashboardModel.createUpload("sambutan", req.body, req.file.filename, (err, result) => {
-        res.redirect("/dashboard/sambutan");
-      }
-    );
-  },
-
   editSambutan: (req, res) => {
+    // menangkap params  yang tidak sesuai
+    if (req.params.id >= 0 == false) {
+      return res.render("dashboard/page-not-found");
+    }
+
+    // menangkap params yang sesuai
     dashboardModel.getById("sambutan", req.params.id, (err, result) => {
       const rows = JSON.parse(JSON.stringify(result));
+      if (result.length < 1) {
+        return res.render("dashboard/page-not-found");
+      }
       res.render("dashboard/edit-sambutan", { rows });
     });
   },
 
   updateSambutan: (req, res) => {
-    if (!req.file){
+    if (!req.file) {
       // Kondisi jika tidak update foto
-      dashboardModel.update('sambutan', req.body, req.params.id, (err, result)=>{
-        console.log("Foto tidak diperbarui!");
-        res.redirect('/dashboard/sambutan');
-      });
+      dashboardModel.update(
+        "sambutan",
+        req.body,
+        req.params.id,
+        (err, result) => {
+          console.log("Foto tidak diperbarui!");
+          res.redirect("/dashboard/sambutan");
+        }
+      );
     } else {
       // Kondisi jika foto diperbarui
       // Hapus dulu file foto lama
-      dashboardModel.getById('sambutan', req.params.id, (err, result)=>{
+      dashboardModel.getById("sambutan", req.params.id, (err, result) => {
         const row = JSON.parse(JSON.stringify(result));
-        const nameFoto = row.map(obj => obj.foto_sambutan);
+        const nameFoto = row.map((obj) => obj.foto_sambutan);
         const deleteFoto = `assets/images/sambutan/${nameFoto.toString()}`;
-        fs.unlinkSync(deleteFoto);
+        if (fs.existsSync(deleteFoto)) {
+          fs.unlinkSync(deleteFoto);
+        } else {
+          return;
+        }
       });
 
       // Update data baru ke database
-      dashboardModel.updateUpload("sambutan", req.body, req.params.id, req.file.filename, (err, result) => {
+      dashboardModel.updateUpload(
+        "sambutan",
+        req.body,
+        req.params.id,
+        req.file.filename,
+        (err, result) => {
           res.redirect("/dashboard/sambutan");
-        });
-    };
+        }
+      );
+    }
   },
-
-  deleteSambutan: (req, res) => {
-    // Hapus file foto
-    dashboardModel.getById('sambutan', req.params.id, (err, result)=>{
-      const row = JSON.parse(JSON.stringify(result));
-      const nameFoto = row.map(obj => obj.foto_sambutan);
-      const deleteFoto = `assets/images/sambutan/${nameFoto.toString()}`;
-      fs.unlinkSync(deleteFoto);
-    });
-
-    // Hapus data di database
-    dashboardModel.delete("sambutan", req.params.id, (err, result) => {
-      res.redirect("/dashboard/sambutan");
-    });
-  },
-
 
   // CRUD Kejuruan
   kejuruan: (req, res) => {
@@ -136,32 +135,32 @@ module.exports = {
     });
   },
 
-  createKejuruan: (req, res) => {
-    dashboardModel.create("kejuruan", req.body, (err, result) => {
-      res.redirect("/dashboard/kejuruan");
-    });
-  },
-
   editKejuruan: (req, res) => {
+    // menangkap params  yang tidak sesuai
+    if(req.params.id >= 0 == false){
+      return res.render("dashboard/page-not-found");
+    }
+    
+    // menangkap params yang sesuai
     dashboardModel.getById("kejuruan", req.params.id, (err, result) => {
       const rows = JSON.parse(JSON.stringify(result));
+      if (result.length < 1) {
+        return res.render("dashboard/page-not-found");
+      }
       res.render("dashboard/edit-kejuruan", { rows });
     });
   },
 
   updateKejuruan: (req, res) => {
-    dashboardModel.update( "kejuruan", req.body, req.params.id, (err, result) => {
+    dashboardModel.update(
+      "kejuruan",
+      req.body,
+      req.params.id,
+      (err, result) => {
         res.redirect("/dashboard/kejuruan");
       }
     );
   },
-
-  deleteKejuruan: (req, res) => {
-    dashboardModel.delete("kejuruan", req.params.id, (err, result) => {
-      res.redirect("/dashboard/kejuruan");
-    });
-  },
-
 
   // CRUD Berita
   berita: (req, res) => {
@@ -172,49 +171,82 @@ module.exports = {
   },
 
   createBerita: (req, res) => {
-    dashboardModel.createUpload("berita", req.body, req.file.filename, (err, result) => {
-      res.redirect("/dashboard/berita");
-    });
+    dashboardModel.createUpload(
+      "berita",
+      req.body,
+      req.file.filename,
+      (err, result) => {
+        res.redirect("/dashboard/berita");
+      }
+    );
   },
 
   editBerita: (req, res) => {
+    // menangkap params  yang tidak sesuai
+    if(req.params.id >= 0 == false){
+      return res.render("dashboard/page-not-found");
+    }
+
+    // menangkap params yang sesuai
     dashboardModel.getById("berita", req.params.id, (err, result) => {
       const rows = JSON.parse(JSON.stringify(result));
+      if (result.length < 1) {
+        return res.render("dashboard/page-not-found");
+      }
       res.render("dashboard/edit-berita", { rows });
     });
   },
 
   updateBerita: (req, res) => {
-    if (!req.file){
+    if (!req.file) {
       // Kondisi jika tidak update foto
-      dashboardModel.update('berita', req.body, req.params.id, (err, result)=>{
-        console.log("Foto tidak diperbarui!");
-        res.redirect('/dashboard/berita');
-      });
+      dashboardModel.updateAktif(
+        "berita",
+        req.body,
+        req.params.id,
+        (err, result) => {
+          console.log("Foto tidak diperbarui!");
+          res.redirect("/dashboard/berita");
+        }
+      );
     } else {
       // Kondisi jika foto diperbarui
       // Hapus dulu file foto lama
-      dashboardModel.getById('berita', req.params.id, (err, result)=>{
+      dashboardModel.getById("berita", req.params.id, (err, result) => {
         const row = JSON.parse(JSON.stringify(result));
-        const nameFoto = row.map(obj => obj.foto_berita);
+        const nameFoto = row.map((obj) => obj.foto_berita);
         const deleteFoto = `assets/images/berita/${nameFoto.toString()}`;
-        fs.unlinkSync(deleteFoto);
+        if (fs.existsSync(deleteFoto)) {
+          fs.unlinkSync(deleteFoto);
+        } else {
+          return;
+        }
       });
 
       // Update data baru ke database
-      dashboardModel.updateUpload("berita", req.body, req.params.id, req.file.filename, (err, result) => {
+      dashboardModel.updateUploadAktif(
+        "berita",
+        req.body,
+        req.params.id,
+        req.file.filename,
+        (err, result) => {
           res.redirect("/dashboard/berita");
-        });
-    };
+        }
+      );
+    }
   },
 
   deleteBerita: (req, res) => {
     // Hapus file foto
-    dashboardModel.getById('berita', req.params.id, (err, result)=>{
+    dashboardModel.getById("berita", req.params.id, (err, result) => {
       const row = JSON.parse(JSON.stringify(result));
-      const nameFoto = row.map(obj => obj.foto_berita);
+      const nameFoto = row.map((obj) => obj.foto_berita);
       const deleteFoto = `assets/images/berita/${nameFoto.toString()}`;
-      fs.unlinkSync(deleteFoto);
+      if (fs.existsSync(deleteFoto)) {
+        fs.unlinkSync(deleteFoto);
+      } else {
+        return;
+      }
     });
 
     // Hapus data di database
@@ -223,6 +255,47 @@ module.exports = {
     });
   },
 
+  // CRUD Komentar
+  komentar: (req, res) => {
+    dashboardModel.get("komentar", (err, result) => {
+      const rows = JSON.parse(JSON.stringify(result));
+      res.render("dashboard/komentar", { rows });
+    });
+  },
+
+  createKomentar: (req, res) => {
+    dashboardModel.create("visimisi", req.body, (err, result) => {
+      res.redirect("/dashboard/visimisi");
+    });
+  },
+
+  editKomentar: (req, res) => {
+    // menangkap params  yang tidak sesuai
+    if(req.params.id >= 0 == false){
+      return res.render("dashboard/page-not-found");
+    }
+
+    // menangkap params yang sesuai
+    dashboardModel.getById("komentar", req.params.id, (err, result) => {
+      const rows = JSON.parse(JSON.stringify(result));
+      if (result.length < 1) {
+        return res.render("dashboard/page-not-found");
+      }
+      res.render("dashboard/edit-komentar", { rows });
+    });
+  },
+
+  updateKomentar: (req, res) => {
+    dashboardModel.updateKomentar(req.body, req.params.id, (err, result) => {
+      res.redirect("/dashboard/komentar");
+    });
+  },
+
+  deleteKomentar: (req, res) => {
+    dashboardModel.delete("komentar", req.params.id, (err, result) => {
+      res.redirect("/dashboard/komentar");
+    });
+  },
 
   //CRUD Galeri
   galeri: (req, res) => {
@@ -233,49 +306,82 @@ module.exports = {
   },
 
   createGaleri: (req, res) => {
-    dashboardModel.createUpload("galeri", req.body, req.file.filename, (err, result) => {
-      res.redirect("/dashboard/galeri");
-    });
+    dashboardModel.createUpload(
+      "galeri",
+      req.body,
+      req.file.filename,
+      (err, result) => {
+        res.redirect("/dashboard/galeri");
+      }
+    );
   },
 
   editGaleri: (req, res) => {
+    // menangkap params  yang tidak sesuai
+    if(req.params.id >= 0 == false){
+      return res.render("dashboard/page-not-found");
+    }
+
+    // menangkap params yang sesuai
     dashboardModel.getById("galeri", req.params.id, (err, result) => {
       const rows = JSON.parse(JSON.stringify(result));
+      if (result.length < 1) {
+        return res.render("dashboard/page-not-found");
+      }
       res.render("dashboard/edit-galeri", { rows });
     });
   },
 
   updateGaleri: (req, res) => {
-    if (!req.file){
+    if (!req.file) {
       // Kondisi jika tidak update foto
-      dashboardModel.update('galeri', req.body, req.params.id, (err, result)=>{
-        console.log("Foto tidak diperbarui!");
-        res.redirect('/dashboard/galeri');
-      });
+      dashboardModel.updateAktif(
+        "galeri",
+        req.body,
+        req.params.id,
+        (err, result) => {
+          console.log("Foto tidak diperbarui!");
+          res.redirect("/dashboard/galeri");
+        }
+      );
     } else {
       // Kondisi jika foto diperbarui
       // Hapus dulu file foto lama
-      dashboardModel.getById('galeri', req.params.id, (err, result)=>{
+      dashboardModel.getById("galeri", req.params.id, (err, result) => {
         const row = JSON.parse(JSON.stringify(result));
-        const nameFoto = row.map(obj => obj.foto_galeri);
+        const nameFoto = row.map((obj) => obj.foto_galeri);
         const deleteFoto = `assets/images/galeri/${nameFoto.toString()}`;
-        fs.unlinkSync(deleteFoto);
+        if (fs.existsSync(deleteFoto)) {
+          fs.unlinkSync(deleteFoto);
+        } else {
+          return;
+        }
       });
 
       // Update data baru ke database
-      dashboardModel.updateUpload("galeri", req.body, req.params.id, req.file.filename, (err, result) => {
+      dashboardModel.updateUploadAktif(
+        "galeri",
+        req.body,
+        req.params.id,
+        req.file.filename,
+        (err, result) => {
           res.redirect("/dashboard/galeri");
-        });
-    };
+        }
+      );
+    }
   },
 
   deleteGaleri: (req, res) => {
     // Hapus file foto
-    dashboardModel.getById('galeri', req.params.id, (err, result)=>{
+    dashboardModel.getById("galeri", req.params.id, (err, result) => {
       const row = JSON.parse(JSON.stringify(result));
-      const nameFoto = row.map(obj => obj.foto_galeri);
+      const nameFoto = row.map((obj) => obj.foto_galeri);
       const deleteFoto = `assets/images/galeri/${nameFoto.toString()}`;
-      fs.unlinkSync(deleteFoto);
+      if (fs.existsSync(deleteFoto)) {
+        fs.unlinkSync(deleteFoto);
+      } else {
+        return;
+      }
     });
 
     // Hapus data di database
