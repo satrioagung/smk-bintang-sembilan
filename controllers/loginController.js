@@ -33,7 +33,7 @@ module.exports = {
           } else {
             req.flash("color", "danger");
             req.flash("status", "Oops..");
-            req.flash("message", "Akun tidak ditemukan");
+            req.flash("message", "Email atau Password salah!!");
             res.redirect("/login");
           }
         });
