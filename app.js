@@ -1,6 +1,5 @@
 const express = require("express");
 const session = require("express-session");
-const methodOverride = require("method-override");
 const flash = require("req-flash");
 
 const homeRouter = require("./routers/homeRouter");
@@ -18,7 +17,6 @@ app.use("/public", express.static("node_modules/tinymce"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(methodOverride("_method"));
 
 // Konfigurasi session
 app.use(
@@ -40,5 +38,5 @@ app.use("/dashboard", dashboardRouter);
 app.use("/", homeRouter);
 
 app.listen(port, () => {
-  console.log(`app runing at port ${port}`);
+  console.log(`app runing at http://localhost:${port}`);
 });
